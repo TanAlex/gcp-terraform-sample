@@ -11,10 +11,10 @@ else
 	REGION = us-west1
 endif
 
-ifeq ($(AUTO_APPROVE), true)
-	AUTO_APPROVE = "-auto-approve"
+ifeq ($(AUTO), true)
+	AUTO_APPROVE = -auto-approve
 else
-	AUTO_APPROVE = ""
+	AUTO_APPROVE =
 endif
 
 print-token:
