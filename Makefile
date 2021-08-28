@@ -35,5 +35,5 @@ plan: print-token
 apply: print-token
 	@set -e; for task in $$(ls -d ??-*); do \
 	    echo "\r\033[01;32mProcessing $$task ...\033[0m"; \
-		( cd $$task; make init; make plan; make AUTO=$(AUTO_APPROVE) apply; echo; echo;) \
+		( cd $$task; make init; make plan; make AUTO=$(AUTO) apply; echo; echo;) \
 	done
