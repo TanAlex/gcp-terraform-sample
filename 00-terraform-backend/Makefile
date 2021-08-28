@@ -30,4 +30,7 @@ plan:
 apply:
 	terraform apply $(AUTO_APPROVE) ./plan.out
 
+destroy:
+	terraform apply -destroy -var-file=./vars-$(ENVIRONMENT)-${REGION}.tfvars 
+
 all: print-token init plan apply

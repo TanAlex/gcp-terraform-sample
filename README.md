@@ -82,3 +82,22 @@ To apply them, override the Makefile arguments like these:
 make ENVIRONMENT=qa REGION=us-west1 AUTO=true all
 ```
 
+## Destroy resources
+
+If you want to destroy resources in a sub-dir
+```
+# cd <sub-dir>
+# For example:
+cd 10-instances
+make destroy
+# this requires you to type "yes" to confirm
+
+# To auto-aprove, use
+make AUTO=true destroy
+```
+
+To destroy all. This will loop through all resources sub-dir in reverse order and call `make destroy`
+
+```
+make destroy-all
+```
