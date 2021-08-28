@@ -1,6 +1,7 @@
 # dev, qa, prod; default=sandbox
 ENVIRONMENT ?= dev
 REGION ?= us-west1
+AUTO ?= false
 
 ifeq ($(ENVIRONMENT), dev)
 	REGION = us-west1
@@ -8,6 +9,12 @@ else ifeq ($(ENVIRONMENT), prod)
 	REGION = us-west1
 else
 	REGION = us-west1
+endif
+
+ifeq ($(AUTO), true)
+	AUTO_APPROVE = -auto-approve
+else
+	AUTO_APPROVE =
 endif
 
 print-token:
@@ -18,7 +25,9 @@ init:
 	terraform init -var-file=./vars-$(ENVIRONMENT)-${REGION}.tfvars -upgrade
 
 plan:
-	terraform plan -var-file=./vars-$(ENVIRONMENT)-${REGION}.tfvars --out /tmp/plan.out
+	terraform plan -var-file=./vars-$(ENVIRONMENT)-${REGION}.tfvars --out ./plan.out
 
 apply:
-	terraform apply -auto-approve /tmp/plan.out
+	terraform apply $(AUTO_APPROVE) ./plan.out
+
+all: print-token init plan apply

@@ -12,7 +12,7 @@ resource "google_service_account" "bastion" {
 // Allow access to the Bastion Host via SSH
 resource "google_compute_firewall" "bastion-ssh" {
   name          = format("%s-bastion-ssh", var.vpc_name)
-  network       = google_compute_network.network.name
+  network       = data.terraform_remote_state.network.outputs.network_name
   direction     = "INGRESS"
   project       = var.project
   source_ranges = ["0.0.0.0/0"]
@@ -55,7 +55,7 @@ resource "google_compute_instance" "bastion" {
   // Define a network interface in the correct subnet.
   network_interface {
     // subnetwork = google_compute_subnetwork.subnetwork.name
-    subnetwork = data.terraform_remote_state.network.subnetwork_name
+    subnetwork = data.terraform_remote_state.network.outputs.subnetwork_name
     // Add an ephemeral external IP.
     access_config {
       // Ephemeral IP

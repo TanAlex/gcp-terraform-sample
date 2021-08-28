@@ -1,9 +1,7 @@
 data "terraform_remote_state" "network" {
   backend = "gcs"
   // workspace = "${terraform.workspace}"
-
-  config {
-    project = var.project
+  config = {
     bucket  = var.bucket_name
     prefix  = var.prefix
   }

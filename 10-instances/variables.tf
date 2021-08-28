@@ -20,6 +20,16 @@ variable "zone" {
   description = "GCP zone"
 }
 
+variable "bucket_name" {
+  type        = string
+  description = "The name of the Google Storage Bucket for terraform_remote_state"
+}
+
+variable "prefix" {
+  type        = string
+  description = "For terraform-remote-state to refer to previously build resources"
+}
+
 # GCP authentication file
 variable "gcp_auth_file" {
   type        = string
