@@ -1,2 +1,2 @@
 bucket = "tf_state_folder"
-prefix = "tf-state/instances"
+prefix = "tf-state/bastion-instance"
